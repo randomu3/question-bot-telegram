@@ -20,7 +20,6 @@ def create_referral_link(user):
 
 def show_keyboard(update: Update, context: CallbackContext):
     keyboard = [
-        [InlineKeyboardButton("Задать вопрос", callback_data='ask')],
         [InlineKeyboardButton("Посмотреть историю ответов", callback_data='history')],
         [InlineKeyboardButton("Задать мне вопрос", callback_data='create_referral')]
         # Добавьте другие кнопки по мере необходимости
