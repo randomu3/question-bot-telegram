@@ -157,8 +157,7 @@ def text_message(update: Update, context: CallbackContext):
             referral_link = ReferralLink.query.get(question.referral_link_id)
             asker = User.query.get(question.asker_id)  # Измените эту строку
 
-
-                        # Уведомляем пользователя об ответе
+            # Уведомляем пользователя об ответе
             logger.info(f'Sending answer to user with Telegram ID: {asker.telegram_id}')
             # Создание кнопки для ответа
             keyboard = [[InlineKeyboardButton("Ответить", callback_data=f'reply_{question.id}')]]
