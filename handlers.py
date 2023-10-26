@@ -55,6 +55,10 @@ def handle_callback(update: Update, context: CallbackContext):
     elif action == 'ask':
         query.message.reply_text('Пожалуйста, введите свой вопрос:')
         # Добавьте свой код для обработки запроса здесь
+    elif action == 'reply' and item_id:
+        # Сохраняем question_id в данных пользователя, чтобы затем использовать его при получении ответа
+        context.user_data['question_id'] = item_id
+        query.message.reply_text('Пожалуйста, введите свой ответ на ответ:')
     elif query.data == 'history':
         # Получаем последние 10 вопросов и ответов пользователя
         recent_questions = (
@@ -176,7 +180,8 @@ def text_message(update: Update, context: CallbackContext):
             # Очищаем question_id из данных пользователя
             context.user_data.pop('question_id', None)
         else:
-            update.message.reply_text('Пожалуйста, используй команды для взаимодействия с ботом.')
+            answer_to_answer_text = update.message.text  # текст ответа на ответ
+            update.message.reply_text(answer_to_answer_text)
 
 handlers = [
     CommandHandler("start", start),
